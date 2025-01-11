@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask CRUD</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Items List</h1>
+        <a href="{{ url_for('create') }}" class="btn">Create New Item</a>
+        <ul>
+            {% for item in items %}
+                <li>
+                    <strong>{{ item.name }}</strong>: {{ item.description }}
+                    <a href="{{ url_for('edit', id=item.id) }}" class="btn">Edit</a>
+                    <form action="{{ url_for('delete', id=item.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn delete-btn">Delete</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
